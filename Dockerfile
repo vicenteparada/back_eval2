@@ -13,4 +13,4 @@ RUN npm ci --omit=dev && npm cache clean --force
 COPY --from=build-stage --chown=node:node /app .
 USER node
 EXPOSE 3000
-CMD ["node", "index.js"]
+CMD ["node", "server.js"]

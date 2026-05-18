@@ -1,19 +1,16 @@
 version: '3.8'
 services:
   backend-app:
-    image: ${DOCKER_USER}/innovatech-backend:latest
+    build: .
     container_name: backend_service
     restart: always
     ports:
       - "3000:3000"
-    environment:
-      - DB_HOST=${DB_HOST_PRIVATE_IP}
-      - DB_USER=innovatech_user
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_NAME=innovatech_db
+    env_file:
+      - .env
     networks:
-      - deploy-net
+      - eval-net
 
 networks:
-  deploy-net:
-    driver: bridge
+  eval-net:
+    external: true
